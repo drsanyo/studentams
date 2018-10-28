@@ -15,7 +15,7 @@ namespace Lesson01_03.UserIO
             {
                 Console.WriteLine("Iveskite savo varda:");
                 vardas = Console.ReadLine();
-                Console.WriteLine("Sveiki " + vardas + "[ENTER - testi]");
+                Console.WriteLine("Sveiki {0} [ENTER - testi]", vardas);
             }
 
             Console.Clear();
