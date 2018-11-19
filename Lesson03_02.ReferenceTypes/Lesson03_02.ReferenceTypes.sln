@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27703.2042
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lesson03_02.ReferenceTypes", "Lesson03_02.ReferenceTypes.csproj", "{7FD7DD27-F767-49FB-AE34-6B78C3D8A8CE}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{7FD7DD27-F767-49FB-AE34-6B78C3D8A8CE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7FD7DD27-F767-49FB-AE34-6B78C3D8A8CE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7FD7DD27-F767-49FB-AE34-6B78C3D8A8CE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7FD7DD27-F767-49FB-AE34-6B78C3D8A8CE}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {BF9761F5-7E68-4A3A-BCD3-2500E4A047F9}
+	EndGlobalSection
+EndGlobal
