@@ -17,6 +17,7 @@ namespace Lesson04_01.@for
                 Console.WriteLine(i);
             }
 
+
             // for ciklas priesinga krytimi
             for (int i = 10-1; i >= 10; i--)
             {
@@ -69,11 +70,10 @@ namespace Lesson04_01.@for
 
 
             // amzinasis ciklas
-
             for (; ; )
             {
                 Console.Write("?");
-                break;
+                //break;
             }
             Console.WriteLine("");
 
