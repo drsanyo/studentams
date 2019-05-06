@@ -96,6 +96,9 @@ namespace Lesson04_02.collections
             }
             */
 
+
+            // rusiavimas
+            /*
             int[] skaiciai = new int[10];
             Random rnd = new Random();
             for (int i = 0; i < skaiciai.Length; i++)
@@ -121,6 +124,35 @@ namespace Lesson04_02.collections
             {
                 Console.Write("{0}, ", skaicius);
             }
+            */
+
+            // masyvo dydzio keitimas
+            /*
+            char[] zodis = new char[6];
+            zodis[0] = 'K';
+            zodis[1] = 'u';
+            zodis[2] = 'r';
+            zodis[3] = 's';
+            zodis[4] = 'a';
+            zodis[5] = 's';
+
+            foreach (var raide in zodis)
+            {
+                Console.Write(raide);
+            }
+            Console.WriteLine();
+
+            Array.Resize(ref zodis, 8);
+
+            zodis[6] = 'C';
+            zodis[7] = '#';
+
+            foreach (var raide in zodis)
+            {
+                Console.Write(raide);
+            }
+            Console.WriteLine();
+            */
 
             Console.ReadLine();
         }
