@@ -22,6 +22,9 @@ namespace Lesson06_03.perkrovimas
             //double result = Sum(100, 23.45);
             //Console.WriteLine(result);
 
+            //result = Sum(new int[] { 100, 23, 125 });
+            //Console.WriteLine(result);
+
             Console.ReadLine();
             //Apziurime metodo WriteLine variantus            
         }
