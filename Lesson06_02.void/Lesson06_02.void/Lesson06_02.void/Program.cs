@@ -7,7 +7,16 @@ using System.Threading.Tasks;
 namespace Lesson06_02.@void
 {
     class Program
-    {      
+    {
+        static void Main(string[] args)
+        {
+            SkaiciusLangeluje(1);
+            SkaiciusLangeluje(12);
+            SkaiciusLangeluje(1123456);
+
+            Console.ReadLine();
+        }
+
         private static void SkaiciusLangeluje(int skaicius)
         {
             int kiekRemelioSimboliuNupiesti = 25;
@@ -39,14 +48,6 @@ namespace Lesson06_02.@void
             }
             Console.WriteLine();
 
-        }
-        static void Main(string[] args)
-        {
-            SkaiciusLangeluje(1);
-            SkaiciusLangeluje(12);
-            SkaiciusLangeluje(1123456);
-
-            Console.ReadLine();
         }
     }
 }
