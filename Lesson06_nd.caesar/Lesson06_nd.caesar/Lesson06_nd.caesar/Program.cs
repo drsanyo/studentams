@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace Lesson06_nd.caesar
 {
-    class Program
+    public class Program
     {
-        private static string CaesarEncode(string s, string key)
+        public static string CaesarEncode(string s, string key)
         {
             string result = "";
             int keyIndex = 0;
@@ -27,7 +27,7 @@ namespace Lesson06_nd.caesar
             return result;
         }
 
-        private static string CaesarDecode(string s, string key)
+        public static string CaesarDecode(string s, string key)
         {
             string result = "";
             int keyIndex = 0;
