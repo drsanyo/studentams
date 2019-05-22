@@ -11,6 +11,12 @@ namespace Lesson08_01.library
     {
         static void Main(string[] args)
         {
+            Book knyga;
+            knyga.Name = "vardas";
+            knyga.Id = "0123";
+
+            Console.WriteLine(knyga.LocalId);
+            Console.ReadLine();
         }
     }
 }
