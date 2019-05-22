@@ -30,6 +30,13 @@ namespace Lesson08_01.BookStruct
         }        
         public string LocalId { get; private set; }
 
+        public Book(string name, string id)
+        {
+            _name = name;
+            _id = id;
+            LocalId = "";
+            CreateLocalId();
+        }
         private void CreateLocalId()
         {
             LocalId = string.Format("{0}_{1}", Name, Id);
