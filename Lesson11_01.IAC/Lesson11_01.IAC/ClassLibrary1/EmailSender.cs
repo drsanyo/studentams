@@ -17,8 +17,8 @@ namespace IAC.BL
             };
 
             var msg = new MailMessage(
-                "dr.sanyo@gmail.com",
-                "dr.sanyo@gmail.com", 
+                "from@gmail.com",
+                "to@gmail.com", 
                 "HTML Report",
                 message);
 
