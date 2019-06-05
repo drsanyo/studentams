@@ -51,6 +51,7 @@
   <ItemGroup>
     <Compile Include="ReportGeneratorTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="HTMLFormatterTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
