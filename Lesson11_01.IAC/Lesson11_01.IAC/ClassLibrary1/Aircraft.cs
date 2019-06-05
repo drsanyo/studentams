@@ -11,9 +11,12 @@ namespace IAC
 
         }
 
-        public Aircraft(int id, int modelId, int companyId, string talNumber)
+        public Aircraft(int id, int modelId, int companyId, string tailNumber)
         {
-
+            Id = id;
+            ModelId = modelId;
+            CompanyId = companyId;
+            TailNumber = tailNumber;
         }
         public int Id { get; private set; }
         public int ModelId { get; set; }
