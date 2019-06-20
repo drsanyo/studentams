@@ -1,8 +1,11 @@
 ﻿using System;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Runtime.Caching;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using FileSystemWatcherBL;
 
@@ -10,6 +13,8 @@ namespace Lesson15_02_FileSystemWatcher
 {
     class Program
     {
+        private static MemoryCache FilesToProcess = MemoryCache.Default;
+
         static void Main(string[] args)
         {
             Console.WriteLine("Analizuoju komandinės eilutės parametrus");
@@ -23,12 +28,15 @@ namespace Lesson15_02_FileSystemWatcher
             else
             {
                 Console.WriteLine($"Pradedu pakitimu stebejima {directoryToWatch} ");
-                using (var inputFileWatcher = new FileSystemWatcher(directoryToWatch))
+
+                ProcessExistingFiles(directoryToWatch);
+
+                using (var inputFileWatcher = new FileSystemWatcher(directoryToWatch))               
                 {
                     inputFileWatcher.IncludeSubdirectories = false;
                     inputFileWatcher.InternalBufferSize = 32768; // 32 KB
                     inputFileWatcher.Filter = "*.*";
-                    inputFileWatcher.NotifyFilter = /*NotifyFilters.FileName | */NotifyFilters.LastWrite;
+                    inputFileWatcher.NotifyFilter = NotifyFilters.FileName | NotifyFilters.LastWrite;
 
                     inputFileWatcher.Created += FileCreated;
                     inputFileWatcher.Changed += FileChanged;
@@ -47,11 +55,13 @@ namespace Lesson15_02_FileSystemWatcher
         private static void FileCreated(object sender, FileSystemEventArgs e)
         {
             Console.WriteLine($"* Byla sukurta: {e.Name} - tipas: {e.ChangeType}");
+            AddToCache(e.FullPath);
         }
 
         private static void FileChanged(object sender, FileSystemEventArgs e)
         {
             Console.WriteLine($"* Byla pakeista: {e.Name} - tipas: {e.ChangeType}");
+            AddToCache(e.FullPath);
         }
 
         private static void FileDeleted(object sender, FileSystemEventArgs e)
@@ -68,29 +78,43 @@ namespace Lesson15_02_FileSystemWatcher
         {
             Console.WriteLine($"KLAIDA: file system watching negali testi darbo: {e.GetException()}");
         }
-        
-        private static void ProcessSingleFile(string filePath)
+
+        private static void AddToCache(string fullPath)
         {
-            var fileProcessor = new FileProcessor(filePath);
-            fileProcessor.Process();
+            var item = new CacheItem(fullPath, fullPath);
+
+            var policy = new CacheItemPolicy
+            {
+                RemovedCallback = ProcessFile,
+                SlidingExpiration = TimeSpan.FromSeconds(2),
+            };
+
+            FilesToProcess.Add(item, policy);
         }
 
-        private static void ProcessDirectory(string directoryPath, string fileType)
+        private static void ProcessFile(CacheEntryRemovedArguments args)
         {
-            switch (fileType)
+            Console.WriteLine($"* Cache item removed: {args.CacheItem.Key} because {args.RemovedReason}");
+
+            if (args.RemovedReason == CacheEntryRemovedReason.Expired)
             {
-                case "TEXT":
-                    string[] textFiles = Directory.GetFiles(directoryPath, "*.txt");
-                    foreach (var textFilePath in textFiles)
-                    {
-                        Console.WriteLine(textFilePath);
-                        //var fileProcessor = new FileProcessor(textFilePath);
-                        //fileProcessor.Process();
-                    }
-                    break;
-                default:
-                    Console.WriteLine($"KLAIDA: nepalaikomas tipas {fileType} ");
-                    return;
+                var fileProcessor = new FileProcessor(args.CacheItem.Key);
+                fileProcessor.Process();
+            }
+            else
+            {
+                Console.WriteLine($"WARNING: {args.CacheItem.Key} was removed unexpectedly and may not be processed because {args.RemovedReason}");
+            }
+        }
+
+        private static void ProcessExistingFiles(string inputDirectory)
+        {
+            Console.WriteLine($"Checking {inputDirectory} for existing files");
+
+            foreach (var filePath in Directory.EnumerateFiles(inputDirectory))
+            {
+                Console.WriteLine($"  - Found {filePath}");
+                AddToCache(filePath);
             }
         }
     }
