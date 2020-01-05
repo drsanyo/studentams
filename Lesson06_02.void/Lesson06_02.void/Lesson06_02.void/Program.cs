@@ -10,14 +10,14 @@ namespace Lesson06_02.@void
     {
         static void Main(string[] args)
         {
-            SkaiciusLangeluje(1);
-            SkaiciusLangeluje(12);
-            SkaiciusLangeluje(1123456);
+            SkaiciusLangelyje(1);
+            SkaiciusLangelyje(12);
+            SkaiciusLangelyje(1123456);
 
             Console.ReadLine();
         }
 
-        private static void SkaiciusLangeluje(int skaicius)
+        private static void SkaiciusLangelyje(int skaicius)
         {
             int kiekRemelioSimboliuNupiesti = 25;
             string remoSimbolis = "*";
